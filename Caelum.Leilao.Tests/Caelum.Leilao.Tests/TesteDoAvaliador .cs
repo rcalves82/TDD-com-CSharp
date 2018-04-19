@@ -14,7 +14,7 @@ namespace Caelum.Leilao.Tests
         [Test]
         public  void DeveEntenderLancesEmOrdemCrescente()
         {
-            // cenario: 3 lances em ordem crescente
+            // cenario 1: 3 lances em ordem crescente
             Usuario joao = new Usuario("Joao");
             Usuario jose = new Usuario("José");
             Usuario maria = new Usuario("Maria");
@@ -42,12 +42,12 @@ namespace Caelum.Leilao.Tests
         [Test]
         public void DeveCalcularAMedia()
         {
-            // cenario: 3 lances em ordem crescente
+            // cenario 2: 3 lances em ordem crescente
             Usuario joao = new Usuario("Joao");
             Usuario jose = new Usuario("José");
             Usuario maria = new Usuario("Maria");
 
-            Leilao leilao = new Leilao("Playstation 3 Novo");
+            Leilao leilao = new Leilao("Playstation  Novo");
 
             leilao.Propoe(new Lance(maria, 300.0));
             leilao.Propoe(new Lance(joao, 400.0));
@@ -60,6 +60,31 @@ namespace Caelum.Leilao.Tests
             // comparando a saida com o esperado
             Assert.AreEqual(400, leiloeiro.Media, 0.0001);
         }
+
+        [Test]
+        public void ValorDaDiferenca()
+        {
+            // cenario 3: 3 lances em ordem crescente
+            Usuario joao = new Usuario("Joao");
+            Usuario jose = new Usuario("José");
+            Usuario maria = new Usuario("Maria");
+
+            Leilao leilao = new Leilao("Playstation 4 Novo");
+
+            leilao.Propoe(new Lance(maria, 300.0));
+            leilao.Propoe(new Lance(joao, 400.0));
+            leilao.Propoe(new Lance(jose, 500.0));
+
+            // executando a acao
+            Avaliador leiloeiro = new Avaliador();
+            leiloeiro.Avalia(leilao);
+
+            // comparando a saida com o esperado
+            double valorDiferenca = 500.0 - 300.00;
+
+            Assert.AreEqual(valorDiferenca, leiloeiro.Diferenca, 0.0001);
+        }
+
     }
    
     
