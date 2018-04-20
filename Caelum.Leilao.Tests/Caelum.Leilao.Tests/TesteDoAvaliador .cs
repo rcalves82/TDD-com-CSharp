@@ -32,58 +32,96 @@ namespace Caelum.Leilao.Tests
             leiloeiro.Avalia(leilao);
 
             // comparando a saida com o esperado
-            double maiorEsperado = 400;
-            double menorEsperado = 250;
-
-            Assert.AreEqual(maiorEsperado, leiloeiro.MaiorLance);
-            Assert.AreEqual(menorEsperado, leiloeiro.MenorLance);
+           
+            Assert.AreEqual(400, leiloeiro.MaiorLance);
+            Assert.AreEqual(250, leiloeiro.MenorLance);
         }
 
         [Test]
-        public void DeveCalcularAMedia()
+
+        public void DeveEntenderLeilaoComApenasUmLance()
         {
-            // cenario 2: 3 lances em ordem crescente
             Usuario joao = new Usuario("Joao");
-            Usuario jose = new Usuario("José");
-            Usuario maria = new Usuario("Maria");
+            Leilao leilao = new Leilao("iPhone X");
 
-            Leilao leilao = new Leilao("Playstation  Novo");
+            leilao.Propoe(new Lance(joao, 5000.0));
 
-            leilao.Propoe(new Lance(maria, 300.0));
-            leilao.Propoe(new Lance(joao, 400.0));
-            leilao.Propoe(new Lance(jose, 500.0));
-
-            // executando a acao
             Avaliador leiloeiro = new Avaliador();
             leiloeiro.Avalia(leilao);
 
-            // comparando a saida com o esperado
-            Assert.AreEqual(400, leiloeiro.Media, 0.0001);
+            Assert.AreEqual(5000.0, leiloeiro.MaiorLance, 0.00001);
+            Assert.AreEqual(5000.0, leiloeiro.MenorLance, 0.00001);
         }
 
         [Test]
-        public void ValorDaDiferenca()
+        public void DeveEncontrarOsTresMaioresLances()
         {
-            // cenario 3: 3 lances em ordem crescente
-            Usuario joao = new Usuario("Joao");
-            Usuario jose = new Usuario("José");
+            Usuario joao = new Usuario("João");
             Usuario maria = new Usuario("Maria");
 
-            Leilao leilao = new Leilao("Playstation 4 Novo");
+            Leilao leilao = new Leilao("Samsung Galax S9");
 
-            leilao.Propoe(new Lance(maria, 300.0));
-            leilao.Propoe(new Lance(joao, 400.0));
-            leilao.Propoe(new Lance(jose, 500.0));
+            leilao.Propoe(new Lance(joao, 4000.0));
+            leilao.Propoe(new Lance(maria, 4500.0));
+            leilao.Propoe(new Lance(joao, 5000.0));
+            leilao.Propoe(new Lance(maria, 6000.0));
 
-            // executando a acao
             Avaliador leiloeiro = new Avaliador();
             leiloeiro.Avalia(leilao);
 
-            // comparando a saida com o esperado
-            double valorDiferenca = 500.0 - 300.00;
+            IList<Lance> maiores = leiloeiro.TresMaiores;
 
-            Assert.AreEqual(valorDiferenca, leiloeiro.Diferenca, 0.0001);
+            Assert.AreEqual(3, maiores.Count);
+            Assert.AreEqual(6000, maiores[0].Valor, 0.00001);
+            Assert.AreEqual(5000, maiores[1].Valor, 0.00001);
+            Assert.AreEqual(4500, maiores[2].Valor, 0.00001);
         }
+
+        //[Test]
+        //public void DeveCalcularAMedia()
+        //{
+        //    // cenario 2: 3 lances em ordem crescente
+        //    Usuario joao = new Usuario("Joao");
+        //    Usuario jose = new Usuario("José");
+        //    Usuario maria = new Usuario("Maria");
+
+        //    Leilao leilao = new Leilao("Playstation  Novo");
+
+        //    leilao.Propoe(new Lance(maria, 300.0));
+        //    leilao.Propoe(new Lance(joao, 400.0));
+        //    leilao.Propoe(new Lance(jose, 500.0));
+
+        //    // executando a acao
+        //    Avaliador leiloeiro = new Avaliador();
+        //    leiloeiro.Avalia(leilao);
+
+        //    // comparando a saida com o esperado
+        //    Assert.AreEqual(400, leiloeiro.Media, 0.0001);
+        //}
+
+        //[Test]
+        //public void ValorDaDiferenca()
+        //{
+        //    // cenario 3: 3 lances em ordem crescente
+        //    Usuario joao = new Usuario("Joao");
+        //    Usuario jose = new Usuario("José");
+        //    Usuario maria = new Usuario("Maria");
+
+        //    Leilao leilao = new Leilao("Playstation 4 Novo");
+
+        //    leilao.Propoe(new Lance(maria, 300.0));
+        //    leilao.Propoe(new Lance(joao, 400.0));
+        //    leilao.Propoe(new Lance(jose, 500.0));
+
+        //    // executando a acao
+        //    Avaliador leiloeiro = new Avaliador();
+        //    leiloeiro.Avalia(leilao);
+
+        //    // comparando a saida com o esperado
+        //    double valorDiferenca = 500.0 - 300.00;
+
+        //    Assert.AreEqual(valorDiferenca, leiloeiro.Diferenca, 0.0001);
+        //}
 
     }
    
