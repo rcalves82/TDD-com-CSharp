@@ -57,19 +57,19 @@ namespace Caelum.Leilao.Tests
 
         }
 
-        [Test]
-        public void DeveSelecionarMenorQue500()
-        {
-            Usuario joao = new Usuario("Joao");
+        //[Test]
+        //public void DeveSelecionarMenorQue500()
+        //{
+        //    Usuario joao = new Usuario("Joao");
 
-            FiltroDeLances filtro = new FiltroDeLances();
-            IList<Lance> resultado = filtro.Filtra(new List<Lance>() {
-             new Lance(joao, 400)});
+        //    FiltroDeLances filtro = new FiltroDeLances();
+        //    IList<Lance> resultado = filtro.Filtra(new List<Lance>() {
+        //     new Lance(joao, 400)});
 
-            Assert.AreEqual(1, resultado.Count);
-            Assert.AreEqual(400, resultado[0].Valor, 0.00001);
+        //    Assert.AreEqual(1, resultado.Count);
+        //    Assert.AreEqual(400, resultado[0].Valor, 0.00001);
 
-        }
+        //}
     }
 
 }

@@ -38,8 +38,8 @@ namespace Caelum.Leilao
 
         private void pegaOsMaioresNo(Leilao leilao)
         {
-            //maiores = new List<Lance>(leilao.Lances.OrderByDescending(x => x.Valor));
-            //maiores = maiores.GetRange(0, maiores.Count > 3 ? 3 : maiores.Count);
+            maiores = new List<Lance>(leilao.Lances.OrderByDescending(x => x.Valor));
+            maiores = maiores.GetRange(0, maiores.Count > 3 ? 3 : maiores.Count);
             var filtro = leilao.Lances.OrderByDescending(p => p.Valor).Take(3);
             maiores = new List<Lance>(filtro);
         }
