@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="AnoBissexto.cs" />
     <Compile Include="Avaliador.cs" />
+    <Compile Include="CriadorDeLeilao.cs" />
     <Compile Include="FiltroDeLances.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -8,10 +8,10 @@ using NUnit.Framework;
 
 namespace Caelum.Leilao.Tests
 {
-    [TestFixture]
+    //[TestFixture]
     public class AnoBisssestoTest
     {
-        [Test]
+        //[Test]
         public void VerificarAnoBissexto()
         {
             AnoBissexto novoAno = new AnoBissexto();
