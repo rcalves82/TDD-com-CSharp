@@ -110,6 +110,20 @@ namespace Caelum.Leilao.Tests
 
             Assert.AreEqual(0, leilao.Lances.Count);
         }
+        [Test]
+        [ExpectedException(typeof(ArgumentException))]
+        public void DeveRecusarLancesComValorDeZero()
+        {
+           new Lance(new Usuario("John Doe"), 0);
+        }
+
+        [Test]
+        [ExpectedException(typeof(ArgumentException))]
+        public void DeveRecusarLancesComValorNegativo()
+        {
+                new Lance(new Usuario("John Doe"), -10);
+        }
+        
 
     }
 }

@@ -50,17 +50,17 @@ namespace Caelum.Leilao.Tests
             leiloeiro.Avalia(leilao);
 
             // comparando a saida com o esperado
-            
+
             Assert.AreEqual(400, leiloeiro.MaiorLance, 0.00001);
             Assert.AreEqual(250, leiloeiro.MenorLance, 0.00001);
         }
-    
+
         [Test]
 
         // cenario 2: 3 lances em ordem crescente
         public void DeveEntenderLeilaoComApenasUmLance()
         {
-          
+
             Leilao leilao = new CriadorDeLeilao().Para("Playstation 4 Novo")
           .Lance(joao, 5000.0)
           .Constroi();
@@ -117,7 +117,7 @@ namespace Caelum.Leilao.Tests
         //    leilao.Propoe(new Lance(maria, 3000.0));
         //    leilao.Propoe(new Lance(joao, 3500.0));
         //    leilao.Propoe(new Lance(maria, 4000.0));
-            
+
         //    Avaliador leiloeiro = new Avaliador();
         //    leiloeiro.Avalia(leilao);
 
@@ -131,7 +131,7 @@ namespace Caelum.Leilao.Tests
         {
             Usuario erick = new Usuario("Erick");
             Usuario marciele = new Usuario("Marciele");
-            Leilao leilao = new Leilao ("Plastation 4");
+            Leilao leilao = new Leilao("Plastation 4");
 
             leilao.Propoe(new Lance(erick, 400.0));
             leilao.Propoe(new Lance(marciele, 300.0));
@@ -227,7 +227,32 @@ namespace Caelum.Leilao.Tests
             Assert.AreEqual(valorDiferenca, leiloeiro.Diferenca, 0.0001);
         }
 
+        [Test]
+        [ExpectedException(typeof(Exception))]
+        public void NaoDeveAvaliarLeiloesSemNenhumLanceDado()
+        {
+
+            //try
+            //{
+                Leilao leilao = new CriadorDeLeilao()
+                    .Para("Playstation 4")
+                    .Constroi();
+
+                leiloeiro.Avalia(leilao);
+            //}
+            //catch (Exception e)
+            //{
+            //    //ok
+            //}
+        }
+        
+           
     }
+
+
+}
+    
+
    
     
-}
+
